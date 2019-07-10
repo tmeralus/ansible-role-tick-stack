@@ -1,0 +1,23 @@
+---
+#
+# Install/run telegraf
+#
+- name: "[Telegraf] Install telegraf"
+  yum:
+    name: telegraf
+    state: present
+  become: true
+
+- name: "[Telegraf] Copy templated telegraf.yml"
+  template:
+    src: "telegraf.conf.j2"
+    dest: "/etc/telegraf/telegraf.conf"
+    mode: 0644
+  become: true
+
+- name: "[Telegraf] Setup telegraf service to autostart"
+  systemd:
+    name: telegraf
+    state: started
+    enabled: true
+  become: true

@@ -1,0 +1,17 @@
+---
+- hosts: all
+  become: yes
+  vars:
+    - provision_docker_inventory: ""
+    - influxdb_port: 8086
+    - chronograf_port: 8888
+    - telegraf_port: 8094
+    - telegraf_stats: 8125
+    - kapacitor_rpc_port: 9091
+    - influxdb_db_name: tick
+    - influxdb_db_internal: _internal
+    - influxdb_root_user: root
+    - influxdb_root_pass: reverse
+    - influx_bind_loop: 127.0.0.1
+  tasks:
+  - import_tasks: main.yml

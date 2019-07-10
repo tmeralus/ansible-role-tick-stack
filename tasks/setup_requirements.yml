@@ -1,0 +1,13 @@
+---
+- name: Copy templated influxdb.repo
+  template:
+    src: influxdb.repo.j2
+    dest: /etc/yum.repos.d/influxdb.repo
+    mode: 0644
+  become: true
+
+- name: Install dependancies
+  package:
+    name: [mailx, tcl, python2-toml, python36-toml, python-pytoml]
+    state: present
+  become: true

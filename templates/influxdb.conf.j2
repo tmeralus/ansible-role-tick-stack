@@ -1,0 +1,46 @@
+[meta]
+  dir = "/var/lib/influxdb/meta"
+  reporting-disabled = false
+  hostname = "{{ ansible_host }}"
+  logging-enabled = true
+
+[data]
+  dir = "/var/lib/influxdb/data"
+  wal-dir = "/var/lib/influxdb/wal"
+  series-id-set-cache-size = 100
+
+[coordinator]
+
+[retention]
+  enabled = true
+
+[shard-precreation]
+
+[monitor]
+  store-enabled = true
+  store-database = "{{influxdb_db_internal}}"
+  store-interval = "10s"
+
+[http]
+  enabled = true
+  bind-address = ":{{influxdb_port}}"
+  log-enabled = true
+  write-tracing = false
+  pprof-enabled = false
+  https-enabled = false
+
+[logging]
+
+[subscriber]
+
+[[graphite]]
+
+[[collectd]]
+
+[[opentsdb]]
+
+[[udp]]
+
+[continuous_queries]
+
+[tls]

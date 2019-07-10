@@ -1,0 +1,15 @@
+---
+#
+# Install/run chronograf
+#
+- name: "[Chronograf] Install chronograf via https"
+  yum:
+    name: https://dl.influxdata.com/chronograf/releases/chronograf-1.7.12.x86_64.rpm
+    state: present
+  become: true
+
+- name: "[Chronograf] Start Chronograf service"
+  service:
+    name: chronograf
+    state: started
+    enabled: yes

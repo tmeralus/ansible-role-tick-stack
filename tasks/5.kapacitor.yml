@@ -1,0 +1,47 @@
+---
+- name: "[Kapacitor] Install kapacitor"
+  yum:
+    name: kapacitor
+    state: present
+  become: true
+
+#- name: "[Kapacitor] Copy templated kapacitor.conf"
+#  template:
+#    src: "kapacitor.conf.j2"
+#    dest: "/etc/kapacitor/kapacitor.conf"
+#    owner: kapacitor
+#    group: kapacitor
+#    mode: 0644
+#  become: true
+
+- name: "[Kapacitor] Setup kapacitor service to autostart"
+  systemd:
+    name: kapacitor
+    state: started
+    enabled: true
+  become: true
+
+# steps for setting up Kapacitor Tick scripts
+- name: "[Kapacitor] 'Create Kapacitor DSL directories'"
+  file:
+    path: "{{ item }}"
+    state: 'directory'
+    recurse: 'yes'
+  with_items:
+    - "/usr/local/etc/kapacitor/tick/script"
+    - "/usr/local/etc/kapacitor/tick/template"
+    - "/usr/local/etc/kapacitor/tick/var"
+
+- name: "[Kapacitor] 'Copy Kapacitor TICK script files'"
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/local/etc/kapacitor/tick/script"
+  with_fileglob:
+    - "/usr/local/etc/kapacitor/tick/script/*.tick"
+
+- name: "[Kapacitor] 'Copy Kapacitor TICK template files' "
+  copy:
+    src:  "{{ item }}"
+    dest: "{{ kapacitor_tick_template_dest_dir }}"
+  with_fileglob:
+    - "files/tick/template"

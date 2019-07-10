@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: yes
+  #roles:
+  #- role: tmeralus.tick_stack
+  #for testing purposes
+  tasks:
+  - import_tasks: "tasks/main.yml"

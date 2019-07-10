@@ -1,0 +1,37 @@
+---
+# Print long messages
+- name: "[Restart] Influxd"
+  systemd:
+    name: influxd
+    state: restarted
+  become: true
+
+- name: "[Restart] Telegraf"
+  systemd:
+    name: telegraf
+    state: restarted
+  become: true
+
+- name: "[Restart] Chronograf"
+  systemd:
+    name: chronograf
+    state: restarted
+  become: true
+
+- name: "[Restart] Kapacitor"
+  systemd:
+    name: kapacitor
+    state: restarted
+  become: true
+
+- debug:
+    msg: "Telegraf Runing on port {{ telegraf_port }}"
+- debug:
+    msg: "InfluxDB Runing on port {{ influxdb_port }}"
+- debug:
+    msg: "Chronograf Runing on port {{ chronograf_port }}"
+- debug:
+    msg: "Kapacitor Runing on port {{ kapacitor_rpc_port }}"
+
+- debug:
+    msg: "Login to web gui at http://{{ ansible_fqdn }}:{{ chronograf_port }}"
