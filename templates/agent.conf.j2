@@ -18,6 +18,7 @@
   urls = ["http://127.0.0.1:{{ influxdb_port }}"]
   username = "{{influxdb_root_user}}"
   password = "{{influxdb_root_pass}}"
+  database = "telegraf"
 
 [[inputs.cpu]]
   percpu = true

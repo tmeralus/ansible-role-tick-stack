@@ -4,9 +4,9 @@ chronograf_port: 8888
 telegraf_port: 8094
 telegraf_stats: 8125
 influxdb_db_name: tick
-#influxdb_db_internal: _monitoring
-#influxdb_root_user: admin
-#influxdb_root_pass: password
+influxdb_db_internal: _monitoring
+influxdb_root_user: admin
+influxdb_root_pass: password
 influx_bind_loop: 127.0.0.1
 var_influxdb_privileges: ALL
 var_influxdb_influx_bin: /usr/bin/influxd

@@ -28,10 +28,10 @@
   write-tracing = false
   pprof-enabled = false
   https-enabled = false
-
-[logging]
-
+  flux-enabled = true
 [subscriber]
+  enabled = true
+  http-timeout = "30s"
 
 [[graphite]]
 
@@ -40,6 +40,10 @@
 [[opentsdb]]
 
 [[udp]]
+  enabled = false
+  bind-address = ":161"
+  database = "udp"
+  retention-policy = ""
 
 [continuous_queries]
 
