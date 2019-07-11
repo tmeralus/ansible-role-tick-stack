@@ -4,10 +4,14 @@ chronograf_port: 8888
 telegraf_port: 8094
 telegraf_stats: 8125
 influxdb_db_name: tick
-influxdb_db_internal: _monitoring
+influxdb_database_name: monitor
+influxdb_database_priv_all: ALL
+influxdb_database_priv_write: WRITE
+influxdb_database_priv_read: READ
 influxdb_root_user: admin
 influxdb_root_pass: password
 influx_bind_loop: 127.0.0.1
+influxdb_ip_address: "{{ ansible_default_ipv4 }}" # 172.16.120.238
 var_influxdb_privileges: ALL
 var_influxdb_influx_bin: /usr/bin/influxd
 var_influxdb_config_file: /etc/influxdb/influxdb.conf
@@ -15,6 +19,9 @@ var_influxdb_config_template: config/base.conf.j2
 var_influxdb_config: []
 
 # Telegraf Plugin variables
+tick_stack_ip: 172.16.120.238
+telegraf_agent_user: admin
+telegraf_agent__pass: p@ss
 telegraf_agent_version: 1.10.0
 telegraf_agent_version_patch: 1
 telegraf_agent_package: telegraf

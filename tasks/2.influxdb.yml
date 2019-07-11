@@ -19,3 +19,16 @@
     state: started
     enabled: true
   become: true
+
+- name: "[Influxdb] Create {{ influxdb_database_name }} database"
+  influxdb_database:
+      hostname: "{{influxdb_ip_address}}"
+      database_name: "{{influxdb_database_name}}"
+
+- name: "[Influxdb] Create user for {{ influxdb_database_name }} with privileges"
+  influxdb_user:
+    user_name: "{{ influxdb_root_user }}"
+    user_password: "{{ influxdb_root_pass }}"
+    grants:
+      - database: "{{ influxdb_database_name }}"
+        privilege: '{{ influxdb_database_priv_all }}'
