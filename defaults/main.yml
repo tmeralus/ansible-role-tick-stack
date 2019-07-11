@@ -3,8 +3,7 @@ influxdb_port: 8086
 chronograf_port: 8888
 telegraf_port: 8094
 telegraf_stats: 8125
-influxdb_db_name: tick
-influxdb_database_name: monitor
+influxdb_db_name: monitor
 influxdb_database_priv_all: ALL
 influxdb_database_priv_write: WRITE
 influxdb_database_priv_read: READ
