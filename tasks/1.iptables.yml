@@ -1,0 +1,32 @@
+---
+- name: "[influxdb] ADD FIREWALLD TCP PORT {{ influxdb_port }}"
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    jump: ACCEPT
+    destination_port: "{{ influxdb_port }}"
+  when: "firewall_rules.stat.exists == false"
+
+- name: "[Chronograf] ADD FIREWALLD TCP PORT {{ chronograf_port }}"
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    jump: ACCEPT
+    destination_port: "{{ chronograf_port }}"
+  when: "firewall_rules.stat.exists == false"
+
+- name: "[Telegraf] ADD FIREWALLD TCP PORT {{ telegraf_port }}"
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    jump: ACCEPT
+    destination_port: "{{ telegraf_port }}"
+  when: "firewall_rules.stat.exists == false"
+
+- name: "[influxdb] ADD FIREWALLD TCP PORT {{ telegraf_stats }}"
+  iptables:
+    chain: INPUT
+    protocol: tcp
+    jump: ACCEPT
+    destination_port: "{{ telegraf_stats }}"
+  when: "firewall_rules.stat.exists == false"

@@ -6,7 +6,7 @@
    permanent: true
    state: enabled
   become: true
-  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int <= 7
+  when: "firewall_rules.stat.exists == true"
 # END INFLUX FIREWALLD PORT
 
 - name: "[Chronograf] ADD FIREWALLD TCP PORT {{ chronograf_port }}"
@@ -16,7 +16,7 @@
    permanent: true
    state: enabled
   become: true
-  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int <= 7
+  when: "firewall_rules.stat.exists == true"
 # END Chronograf FIREWALLD PORT
 
 - name: "[Telegraf] ADD FIREWALLD TCP PORT {{ telegraf_port }}"
@@ -26,7 +26,7 @@
    permanent: true
    state: enabled
   become: true
-  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int <= 7
+  when: "firewall_rules.stat.exists == true"
 # END telegraf FIREWALLD PORT
 
 - name: "[Telegraf] ADD FIREWALLD TCP PORT {{ telegraf_stats }}"
@@ -36,11 +36,5 @@
    permanent: true
    state: enabled
   become: true
-  when: ansible_distribution == 'CentOS' and ansible_distribution_major_version|int <= 7
+  when: "firewall_rules.stat.exists == true"
 # END telegraf FIREWALLD PORT
-
-- name: RELOAD FIREWALLD
-  systemd:
-    name: firewalld
-    state: reloaded
-  become: true

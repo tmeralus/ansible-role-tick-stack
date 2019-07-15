@@ -11,3 +11,8 @@
     name: [mailx, tcl, python2-toml, python36-toml, python-pytoml]
     state: present
   become: true
+
+- name: check if firewalld exists
+  stat:
+    path: /etc/sysconfig/firewalld
+  register: firewall_rules

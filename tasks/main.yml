@@ -1,6 +1,7 @@
 
 - import_tasks: "setup_requirements.yml"
 - import_tasks: "1.firewall.yml"
+- import_tasks: "1.iptables.yml"
 - import_tasks: "2.influxdb.yml"
 - import_tasks: "3.telegraf.yml"
 - import_tasks: "4.chronograf.yml"
