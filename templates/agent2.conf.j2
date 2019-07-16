@@ -1,0 +1,74 @@
+[global_tags]
+
+[agent]
+  interval = "05s"
+  round_interval = true
+  metric_batch_size = 1000
+  metric_buffer_limit = 10000
+  collection_jitter = "0s"
+  flush_interval = "05s"
+  flush_jitter = "0s"
+  precision = ""
+  quiet = false
+  logfile_rotation_max_size = "1024MB"
+  hostname = "{{ ansible_hostname }}"
+  omit_hostname = false
+
+[[outputs.influxdb]]
+  urls = ["http://172.16.120.238:{{ influxdb_port }}", "http://127.0.0.1:{{ influxdb_port }}"]
+  username = "{{influxdb_root_user}}"
+  password = "{{influxdb_root_pass}}"
+
+[[inputs.cpu]]
+  percpu = true
+  totalcpu = true
+  collect_cpu_time = false
+  report_active = false
+
+[[inputs.disk]]
+  ignore_fs = ["tmpfs", "devtmpfs", "devfs", "iso9660", "overlay", "aufs", "squashfs"]
+
+[[inputs.diskio]]
+  devices = ["sda"]
+  skip_serial_number = false
+
+[[inputs.kernel]]
+  context_switches = "ctxt"
+  disk_pages_in = "0"
+  disk_pages_out = "1"
+  interrupts = "5"
+  processes_forked = "3600"
+  entropy_avail = "3600"
+
+[[inputs.mem]]
+  active = "0"
+  available = "0"
+  buffered = "0"
+  cached = "0"
+  free = "0"
+  inactive = "0"
+
+[[inputs.processes]]
+  blocked = "8i"
+  running = "1i"
+  sleeping = "265i"
+  total = "274i"
+  zombie = "0i"
+  dead = "0i"
+  paging = "0i"
+  total_threads = "687i"
+
+[[inputs.swap]]
+  free = "1024"
+  total = "8192"
+  used = "1024"
+  used_percent = "90"
+  in = "0"
+  out = "0"
+
+[[inputs.system]]
+  load1 = "0"
+  load5 = "0"
+  n_users = "0"
+  n_cpus = "0"
+  uptime = "3600"
