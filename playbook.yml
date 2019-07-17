@@ -1,8 +1,7 @@
 ---
 - hosts: all
   become: yes
-  #roles:
-  #- role: tmeralus.tick_stack
-  #for testing purposes
   tasks:
+  - name: Include OS-specific variables.
+    include_vars: "{{ playbook_dir }}/defaults/main.yml"
   - import_tasks: "tasks/main.yml"
