@@ -1,4 +1,17 @@
 # SETUP AGENT
+
+
+#- name: Get Tick Stack Host ip
+#  vars:
+#    data_yaml: |
+#      #!jinja2: lstrip_blocks: True
+#      {% for host in groups['tick'] %}
+#        - {{ hostvars[host]['ansible_default_ipv4']['address'] }}
+#      {% endfor %}
+#  set_fact:
+#    # Its ugly but this eliminates white spaces adn new lines to format the given value into the conf files correctly
+#    tick_host_port: "{{ data_yaml | from_yaml | to_nice_yaml | regex_replace('-','') | regex_replace('\n','') | regex_replace('^\\/', '') }}"
+
 - name: Copy templated influxdb.repo
   template:
     src: influxdb.repo.j2
