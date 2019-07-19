@@ -59,6 +59,13 @@
   become: true
 
 - name: "[Telegraf] Setup telegraf service to autostart"
+  service:
+    name: telegraf
+    state: restarted
+    enabled: true
+  become: true
+  
+- name: "[Telegraf] Setup telegraf service to autostart"
   systemd:
     name: telegraf
     state: restarted
