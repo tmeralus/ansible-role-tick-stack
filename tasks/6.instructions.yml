@@ -1,25 +1,25 @@
 ---
 # Print long messages
 - name: "[Restart] Influxd"
-  systemd:
+  service:
     name: influxd
     state: restarted
   become: true
 
 - name: "[Restart] Telegraf"
-  systemd:
+  service:
     name: telegraf
     state: restarted
   become: true
 
 - name: "[Restart] Chronograf"
-  systemd:
+  service:
     name: chronograf
     state: restarted
   become: true
 
 - name: "[Restart] Kapacitor"
-  systemd:
+  service:
     name: kapacitor
     state: restarted
   become: true

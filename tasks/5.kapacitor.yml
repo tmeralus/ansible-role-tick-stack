@@ -15,7 +15,7 @@
 #  become: true
 
 - name: "[Kapacitor] Setup kapacitor service to autostart"
-  systemd:
+  service:
     name: kapacitor
     state: started
     enabled: true

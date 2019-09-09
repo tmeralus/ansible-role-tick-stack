@@ -14,11 +14,12 @@
   become: true
 
 - name: "[Influxdb] Enable Influxdb on boot"
-  systemd:
+  service:
     name: influxd
     state: started
     enabled: true
   become: true
+
 #
 #- name: "[Influxdb] Create {{ influxdb_db_name }} database"
 #  influxdb_database:
