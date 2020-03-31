@@ -5,4 +5,5 @@
 - import_tasks: "3.telegraf.yml"
 - import_tasks: "4.chronograf.yml"
 - import_tasks: "5.kapacitor.yml"
+- import_tasks: "grafana.yml"
 - import_tasks: "6.instructions.yml"
